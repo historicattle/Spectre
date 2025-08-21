@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Compilation {
 private:
@@ -6,9 +7,9 @@ private:
 	std::string flags;
 	std::string output_file;
 	std::string source_file;
-	Compilation() {}
+	Compilation();
 
 public:	
-	void init() {}
-	int compile() {}
+	void init();
+	int compile();
 }

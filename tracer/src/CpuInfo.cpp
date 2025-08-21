@@ -1,24 +1,23 @@
 #include "CpuInfo.h"
-#include<iostream>
 #include<string>
+#include <fstream>
 
 void CpuInfo::init(){
-	std::ifstream cpuInfoFile("/proc/cpuInfo");
-	std::string line;
+    std::ifstream cpuInfoFile("/proc/cpuinfo");
+    std::string line;
 
 	while (std::getline(cpuInfoFile, line)) {
-		if (line.find("processor") != std::string::npos) {
+		if (line.find("cpu cores") != std::string::npos) {
 			numCores = std::stoi(line.substr(line.find(":") + 1));
 		}
 		else if (line.find("cache size") != std::string::npos) {
-			cacheSize = std::stoll(line.substr(line.find(":") + 1));
+			cacheSize = std::stoull(line.substr(line.find(":") + 1));
 		}
 		else if (line.find("model name") != std::string::npos){
 			modelName = line.substr(line.find(":") + 1);
 		}
 		else if (line.find("vendor_id") != std::string::npos) {
-			vendorId = std::stoi(line.substr(line.find(":") + 1));
+			vendorId = line.substr(line.find(":") + 1);
 		}
-		else if()
 	}
 }

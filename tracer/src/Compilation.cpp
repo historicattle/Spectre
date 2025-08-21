@@ -6,7 +6,7 @@
 
 void Compilation::init() {
 	std::ifstream input_stream("../tui/config/Compilation.txt");
-	std::string line;
+	std::string line = {};
 
 	while(std::getline(input_stream, line)) {
 		if (line.find("COMPILER") != std::string::npos) {
