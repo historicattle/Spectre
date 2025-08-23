@@ -1,64 +1,47 @@
 # Spectre
 
-A terminal-based system monitoring and debugging tool for comprehensive process analysis.
-
 ## Overview
 
-Spectre provides real-time monitoring and analysis of system processes with focus on:
+Spectre is a terminal-based system monitoring and debugging tool for comprehensive process analysis, currently under active development.
+
+## Current Development Status
+
+The project is in early development phase. Currently implemented:
+- **Compilation Module (Tracer)**: A component that handles configurable compilation processes
+- Basic configuration file parsing
+- Command execution infrastructure
+
+## Planned Features
 
 - **System Call Tracing**: Monitor and log all system calls made by target processes
 - **Memory Analysis**: Track stack memory usage and heap allocations
 - **Memory Leak Detection**: Identify and report memory leaks in real-time
-- **Interactive TUI**: Terminal-based user interface for efficient monitoring
-
-## Features
-
-- Real-time system call monitoring with detailed parameter logging
-- Stack memory usage tracking and visualization
-- Heap allocation monitoring with allocation/deallocation tracking
-- Memory leak detection with source location identification
-- Process filtering and selection capabilities
-- Export functionality for analysis results
-- Low-overhead monitoring suitable for production environments
+- **Interactive TUI**: Terminal-based user interface for efficient monitoring using FTXUI
+- **Real-Time Updates**: Dynamic display of process information and statistics
+- **Process Filtering**: Select specific processes to monitor
+- **Export Functionality**: Save analysis results for later review
 
 ## Requirements
 
-- Windows 10/11 or Linux
-- Administrative privileges (required for system call tracing)
 - C++17 compatible compiler
-- CMake 3.15 or higher
+- CMake 3.10 or higher.
+- Administrative privileges (will be required for system call tracing)
 
-## Building
 
-```bash
-mkdir build
-cd build
-cmake ..
-cmake --build . --config Release
-```
+## Project Structure
+
+- `tracer/` - Core compilation and execution functionality
+- `tui/` - The Terminal User Interface components
+
 
 ## Usage
 
-Run with administrative privileges:
-
-```bash
-# Monitor specific process by PID
-./spectre --pid <process_id>
-
-# Monitor process by name
-./spectre --process <process_name>
-
-# Monitor with custom output file
-./spectre --pid <process_id> --output trace.log
-```
-
-## Command Line Options
-
-- `--pid <id>`: Target process ID
-- `--process <name>`: Target process name
-- `--output <file>`: Output file for trace data
-- `--help`: Display usage information
+The project is not yet ready for end-user usage. Full command-line options will be implemented in future releases.
 
 ## License
 
 This project is licensed under the MIT License.
+
+## Contributing
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing to the project.

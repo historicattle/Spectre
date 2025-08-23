@@ -28,7 +28,7 @@ int Compilation::compile() {
 		return -1;
 	}
 	//TODO: Trim whitespace/tabs/newlines from strings
-	std::string command = compiler_name + " " + flags + " -o " + output_file + " " + source_file;
+	std::string command = compiler_name + " " + flags + "-g -o " + output_file + " " + source_file;
 	return system(command.c_str());
 }
 

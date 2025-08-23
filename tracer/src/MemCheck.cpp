@@ -20,6 +20,7 @@ int main() {
 // 1. Illegal read/write
 // 2. Using uninitialized values
 // 3. Illegal frees
+// refer: https://valgrind.org/docs/manual/mc-manual.html
 
 void parseMemCheck() {
 	std::ifstream memcheck("../output/MemcheckOut.log");
