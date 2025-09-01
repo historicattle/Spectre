@@ -1,11 +1,12 @@
 #include "Compilation.h"
-#include<iostream>
-#include<string>
+#include <exception>
+#include <iostream>
+#include <string>
 #include <fstream>
 #include <cstdlib>
 
 void Compilation::init() {
-	std::ifstream input_stream("../tui/config/Compilation.txt");
+	std::ifstream input_stream("Compilation.txt");
 	std::string line = {};
 
 	while(std::getline(input_stream, line)) {

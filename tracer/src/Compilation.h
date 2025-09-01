@@ -12,4 +12,4 @@ private:
 public:	
 	void init();
 	int compile();
-}
+};
