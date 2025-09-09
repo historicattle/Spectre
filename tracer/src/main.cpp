@@ -1,6 +1,15 @@
+#include "Compilation.h"
 #include<iostream>
+#include<cstdlib>
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	
+	Compilation compilation;
+	compilation.compile();
+
+	system("RunMassif.sh");
+
+
+
 	return 0;
 }

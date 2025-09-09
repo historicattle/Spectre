@@ -7,9 +7,9 @@ private:
 	std::string flags;
 	std::string output_file;
 	std::string source_file;
-	Compilation();
 
 public:	
+	Compilation();
 	void init();
 	int compile();
 };
