@@ -20,7 +20,6 @@ void Compilation::init() {
 			source_file = line.substr(line.find('=') + 1);
 		}
 	}
-
 }
 
 int Compilation::compile() {
@@ -30,7 +29,8 @@ int Compilation::compile() {
 	}
 	//TODO: Trim whitespace/tabs/newlines from strings
 	std::string command = compiler_name + " " + flags + "-g -o " + output_file + " " + source_file;
-	return system(command.c_str());
+	int status = system(command.c_str());
+	return status;
 }
 
 Compilation::Compilation() {
