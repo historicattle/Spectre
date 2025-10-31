@@ -1,3 +1,5 @@
+#include "Compilation.h"
+
 #include <vector>
 #include <iostream>
 #include <string>
@@ -8,13 +10,20 @@
 #include <ftxui/component/component_options.hpp>
 #include <ftxui/component/component_base.hpp>
 #include <ftxui/component/screen_interactive.hpp>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 using namespace std;
 
-void writeConfig(string compiler, vector<string> flags, string srcPath, string outputDir);
-
-int main() {
+void Compilation::compilationRenderer() {
     using namespace ftxui;
+
+    mkfifo ("/tmp/compConfig.log", 0666);
+    int fd = open("/tmp/compConfig.log", O_NONBLOCK|O_WRONLY);
+    if(fd!=-1){
+        write(fd,"[INFO] Welcome to Spectre!\n",28);
+        write(fd,"[INFO] Compilation Config FIFO Created\n",40);
+    }
 
     string srcPath;
     string outputDir;
@@ -38,7 +47,17 @@ int main() {
 
         string compiler = compilerOptions[compiler_selected];
 
-        writeConfig(compiler,compileFlags,srcPath,outputDir);
+        std::string buffer;
+        buffer += "COMPILER=" + compiler + "\n";
+        buffer += "FLAGS=";
+        for (int i = 0; i < compileFlags.size(); ++i) {
+            buffer += compileFlags[i];
+        }
+        buffer += "\n";
+        buffer += "SOURCE=" + srcPath + "\n";
+        buffer += "OUTPUT=" + outputDir + "\n";
+
+        write(fd, buffer.c_str(), buffer.size());
     });
 
     auto checkboxes = Container::Vertical({
@@ -92,7 +111,7 @@ int main() {
     screen.Loop(renderer);
 }
 
-void writeConfig(string compiler, vector<string> flags, string srcPath, string outputDir=""){
+void Compilation::writeConfig(string compiler, vector<string> flags, string srcPath, string outputDir=""){
     FILE* fp;
     fp=fopen("../config/Compilation.txt","w");
 
@@ -105,4 +124,9 @@ void writeConfig(string compiler, vector<string> flags, string srcPath, string o
         fprintf(fp,"OUTPUT=%s\n",outputDir.c_str());
     }
     fclose(fp);
+}
+
+int main(){
+    Compilation C;
+    C.compilationRenderer();
 }
