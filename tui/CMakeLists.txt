@@ -13,8 +13,6 @@ FetchContent_MakeAvailable(ftxui)
 add_library(tui
     src/main.cpp
     src/Compilation.cpp
-    src/Compilation.h
-    src/Dashboard.h
     src/Dashboard.cpp
 )
 
