@@ -4,11 +4,9 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
-#include <fcntl.h>
-#include <unistd.h>
 
-int Compilation::init(std::string path) {
-	std::ifstream input_stream(path);
+void Compilation::init() {
+	std::ifstream input_stream("Compilation.txt");
 	std::string line = {};
 
 	while(std::getline(input_stream, line)) {
@@ -22,8 +20,6 @@ int Compilation::init(std::string path) {
 			source_file = line.substr(line.find('=') + 1);
 		}
 	}
-
-	return compile();
 }
 
 int Compilation::compile() {
@@ -38,11 +34,5 @@ int Compilation::compile() {
 }
 
 Compilation::Compilation() {
-	std::string fifopath="/tmp/compConfig.log";
-	int fd = open(fifopath.c_str(), O_RDONLY);
-	int status = init(fifopath);
-
-	if(!status){
-		close(fd);
-	}
+	init();
 }

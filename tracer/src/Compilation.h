@@ -10,6 +10,6 @@ private:
 
 public:	
 	Compilation();
-	int init(std::string path);
+	void init();
 	int compile();
 };
